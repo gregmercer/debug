@@ -48,5 +48,8 @@ Server started and listening at localhost:3000
 
 Open your browser to [localhost:3000](http://localhost:3000). You should see a simple search form. Try to search for something like "web" or "javascript". The data being searched is in the server.js file.
 
-
 Try to fix the problem, then restart the app.
+
+When working it should look like this:
+
+![Screenshot of app after issues fixed.](working.png)
