@@ -1,0 +1,54 @@
+<html>
+<head>
+	<title>Debugging JavaScript</title>
+</head>
+<body>
+
+	<form id="search">
+		<input type="text" name="q">
+		<input type="submit" value="Search">
+	</form>
+
+	<pre id="result"></pre>
+
+	<script src="jquery.js"></script>
+
+	<script>
+
+		document.addEventListener('DOMContentLoaded', function() {
+
+			var $form = $('#search');
+			var $results = $('#results');
+			var searching = false;
+
+			$form.on('submit', function(evt) {
+
+				// Prevents navigating away from this page when the form is submitted.
+				evt.preventDefault();
+
+				if (searching) {
+					// Already searching..
+					return;
+				}
+
+				var q = $(':input[name="q"]').val();
+
+				/*
+					Use jQuery to excute an AJAX request. For more information:
+					https://api.jquery.com/jquery.get/
+				*/
+				$.get('/search'/* URI */, { q: q }/* parameters */).done(function() {
+
+					// This code is run when the AJAX request has finished.
+
+					// Transform the data object into a string (text).
+					var resultText = JSON.stringify(data, null, 2/* amount of indentation */);
+
+					// Put the results in the page so that the user can see them.
+					$results.text(resultText);
+				});
+			});
+		});
+	</script>
+</body>
+</html>
